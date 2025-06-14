@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Command git 
+ Comandos de git basicos en el este orden 
+
+`git checkout -b "feature/nombre-rama"` --> para crear una rama
+
+`git switch nombre-rama ` --> para navegar o cambiar de rama
+
+`git status` --> para validar los cambios que se realizaron
+`git add .` --> para agregar los cambios que se realizaron
+`git commit -m "mensaje de que se hizo a nivel de cambios"` --> para agregar un comentario
+`git push` --> para subir el proyecto al repositorio
