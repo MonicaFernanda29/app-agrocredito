@@ -1,1 +1,29 @@
-<p>carrito works!</p>
+<div class="carrito-container">
+  <div class="carrito-items">
+    <div class="carrito-item" *ngFor="let producto of carrito">
+      <img [src]="producto.imagen" alt="producto.nombre" class="item-img" />
+      <div class="item-info">
+        <h3>{{ producto.nombre }}</h3>
+        <p class="price">${{ producto.precio }}</p>
+        <div class="quantity">
+          <button (click)="producto.cantidad = producto.cantidad - 1" [disabled]="producto.cantidad <= 1">-</button>
+          <span>{{ producto.cantidad }}</span>
+          <button (click)="producto.cantidad = producto.cantidad + 1">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resumen-pedido">
+    <h3>Resumen del pedido</h3>
+    <div class="resumen-linea">
+      <span>Subtotal</span>
+      <span>${{ obtenerSubtotal() }}</span>
+    </div>
+    <div class="resumen-total">
+      <strong>Total</strong>
+      <strong>${{ obtenerSubtotal() }}</strong>
+    </div>
+    <button class="checkout-btn">Comprar</button>
+  </div>
+</div>
