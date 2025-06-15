@@ -5,6 +5,7 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { HomeComponent } from './pages/home/home.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,8 @@ export const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'contacto', component: ContactoComponent },
+  { path: 'registro', component: RegistroComponent },
+
 ];
 
 @NgModule({
