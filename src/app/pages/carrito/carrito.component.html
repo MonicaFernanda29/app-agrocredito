@@ -1,29 +1,57 @@
-<div class="carrito-container">
-  <div class="carrito-items">
-    <div class="carrito-item" *ngFor="let producto of carrito">
-      <img [src]="producto.imagen" alt="producto.nombre" class="item-img" />
-      <div class="item-info">
-        <h3>{{ producto.nombre }}</h3>
-        <p class="price">${{ producto.precio }}</p>
-        <div class="quantity">
-          <button (click)="producto.cantidad = producto.cantidad - 1" [disabled]="producto.cantidad <= 1">-</button>
-          <span>{{ producto.cantidad }}</span>
-          <button (click)="producto.cantidad = producto.cantidad + 1">+</button>
-        </div>
+<!-- 🛒 Vista del carrito -->
+<div *ngIf="!facturaGenerada" class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Tu Carrito</h2>
+
+  <div *ngFor="let item of carrito; index as i" class="flex items-center mb-4 border p-2 rounded-lg shadow-sm">
+    <img [src]="item.imagen" alt="Producto" class="w-20 h-20 mr-4 rounded">
+    <div class="flex-1">
+      <p class="font-semibold">{{ item.nombre }}</p>
+      <p>${{ item.precio }} x {{ item.cantidad }}</p>
+      <div class="flex gap-2 mt-1">
+        <button (click)="aumentar(i)" class="bg-green-500 text-white px-2 rounded">+</button>
+        <button (click)="disminuir(i)" class="bg-yellow-500 text-white px-2 rounded">-</button>
+        <button (click)="eliminar(i)" class="bg-red-500 text-white px-2 rounded">Eliminar</button>
       </div>
     </div>
   </div>
 
-  <div class="resumen-pedido">
-    <h3>Resumen del pedido</h3>
-    <div class="resumen-linea">
-      <span>Subtotal</span>
-      <span>${{ obtenerSubtotal() }}</span>
-    </div>
-    <div class="resumen-total">
-      <strong>Total</strong>
-      <strong>${{ obtenerSubtotal() }}</strong>
-    </div>
-    <button class="checkout-btn">Comprar</button>
-  </div>
+  <p class="mt-4 font-bold text-lg">Total: ${{ obtenerSubtotal() }}</p>
+  <button (click)="comprar()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Comprar</button>
 </div>
+
+<!-- 🧾 Vista de factura -->
+<div *ngIf="facturaGenerada" class="p-6 max-w-2xl mx-auto bg-white shadow-lg rounded-lg border border-gray-300 mt-4">
+  <h2 class="text-2xl font-bold mb-2 text-center">Factura</h2>
+  <p><strong>Cliente:</strong> {{ facturaResumen.cliente }}</p>
+  <p><strong>Fecha:</strong> {{ facturaResumen.fecha | date:'short' }}</p>
+
+  <div class="mt-4">
+    <table class="w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="px-4 py-2 text-left">Producto</th>
+          <th class="px-4 py-2">Cantidad</th>
+          <th class="px-4 py-2">Precio</th>
+          <th class="px-4 py-2">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of facturaResumen.productos" class="border-t">
+          <td class="px-4 py-2">{{ p.nombre }}</td>
+          <td class="px-4 py-2 text-center">{{ p.cantidad }}</td>
+          <td class="px-4 py-2 text-center">${{ p.precio }}</td>
+          <td class="px-4 py-2 text-right">${{ p.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 text-right text-lg font-semibold">
+    Total a pagar: ${{ facturaResumen.total }}
+  </div>
+
+  <button (click)="volverAlCarrito()" class="mt-6 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
+    Volver al carrito
+  </button>
+</div>
+

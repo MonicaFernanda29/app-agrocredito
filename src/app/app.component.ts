@@ -5,6 +5,7 @@ import { FooterComponent } from "./layout/footer/footer.component";
 import { CarritoComponent } from "./pages/carrito/carrito.component";
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

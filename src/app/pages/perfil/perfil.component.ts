@@ -11,9 +11,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent {
-  nombre = 'Juani Rodríguez';
-  correo = 'juani@agrofacil.com';
+  nombre = 'Juani Pérez';
+  correo = 'juanicorreo.com';
+  telefono = '3001234567';
+  direccion = 'Finca El Progreso, Tolima';
   editandoPerfil = false;
+
+  pedidos = [
+    { id: 1234, fecha: '05/06/2025', total: 150000 },
+    { id: 1201, fecha: '01/06/2025', total: 80000 }
+  ];
 
   editarPerfil() {
     this.editandoPerfil = true;
@@ -24,8 +31,7 @@ export class PerfilComponent {
   }
 
   guardarCambios() {
-    // Aquí podrías hacer una llamada al backend para actualizar los datos
-    console.log('Datos guardados:', this.nombre, this.correo);
+    console.log('Datos guardados:', this.nombre, this.correo, this.telefono, this.direccion);
     this.editandoPerfil = false;
   }
 }

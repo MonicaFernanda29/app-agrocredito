@@ -1,22 +1,50 @@
-<div class="login-container">
-  <h2>Iniciar sesión</h2>
-  <p>Accede a tu cuenta para comprar productos agrícolas fácilmente.</p>
+<div class="flex items-center justify-center min-h-screen bg-[#E8DDC7]">
+  <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md border border-[#cfc9b2]">
+    <h2 class="text-2xl font-bold text-center text-[#3d5229] mb-2">Bienvenido de nuevo</h2>
+    <p class="text-center text-[#6b705c] mb-6">
+      Ingresa tus datos para continuar comprando en AgroCrédito 🌿
+    </p>
 
-  <form>
-    <label for="email">Correo electrónico</label>
-    <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+    <form>
+      <div class="mb-4">
+        <label for="correo" class="block text-[#4a4e38] mb-1">Correo electrónico</label>
+        <input
+          id="correo"
+          type="email"
+          placeholder="ejemplo@correo.com"
+          class="w-full px-4 py-2 border border-[#dcd6c1] rounded-md bg-[#fdfcf8] focus:outline-none focus:ring-2 focus:ring-[#6B8C79]"
+        />
+      </div>
 
-    <label for="password">Contraseña</label>
-    <input type="password" id="password" placeholder="••••••••" required>
+      <div class="mb-4">
+        <label for="password" class="block text-[#4a4e38] mb-1">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          class="w-full px-4 py-2 border border-[#dcd6c1] rounded-md bg-[#fdfcf8] focus:outline-none focus:ring-2 focus:ring-[#6B8C79]"
+        />
+      </div>
 
-    <div class="form-options">
-      <label>
-        <input type="checkbox"> Recuérdame
-      </label>
-      <a href="#">¿Olvidaste tu contraseña?</a>
-    </div>
+      <div class="flex items-center justify-between mb-6 text-sm">
+        <label class="inline-flex items-center text-[#6b705c]">
+          <input type="checkbox" class="form-checkbox text-[#6B8C79]" />
+          <span class="ml-2">Recuérdame</span>
+        </label>
+        <a href="#" class="text-[#6B8C79] hover:underline">¿Olvidaste tu contraseña?</a>
+      </div>
 
-    <button type="submit">Iniciar sesión</button>
-    <p class="register">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
-  </form>
+      <button
+        type="submit"
+        class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#5a7c6a] w-full transition-colors duration-200"
+      >
+        Iniciar sesión
+      </button>
+    </form>
+
+    <p class="text-sm text-center text-[#6b705c] mt-6">
+      ¿No tienes una cuenta?
+      <a href="/registro" class="text-[#6B8C79] font-medium hover:underline">Regístrate</a>
+    </p>
+  </div>
 </div>
