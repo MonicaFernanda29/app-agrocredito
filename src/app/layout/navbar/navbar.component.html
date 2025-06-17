@@ -1,14 +1,18 @@
 <nav class="px-4 py-3 shadow-md text-white" style="background-color: #6B8C79">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo o Título -->
-    <div class="text-2xl font-bold text-[#E8DDC7]">
-      AgroCredito 🌿
+    <div class="text-2xl font-bold text-[#E8DDC7]"> 
+      <a href="/"> AgroCrédito 🌿</a>
     </div>
 
     <!-- Menú -->
     <div class="hidden md:flex space-x-6 items-center relative">
-      <a routerLink="/" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio</a>
+      <a routerLink="/inicio" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio Sesión</a>
+      <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea tu cuenta</a>
       <a routerLink="/productos" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Productos</a>
+      <a routerLink="/carrito" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Carrito</a>
+      <a routerLink="/contacto" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Contáctanos</a>
+      <a routerLink="/perfil" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Perfil</a>
 
       <!-- Dropdown Categorías -->
       <div class="group relative">
@@ -20,10 +24,6 @@
           <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-sm">🐛 Insecticidas</a>
         </div>
       </div>
-
-      <a routerLink="/carrito" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Carrito</a>
-      <a routerLink="/contacto" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Contáctanos</a>
-      <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea tu cuenta</a>
     </div>
 
     <!-- Botón mobile -->
