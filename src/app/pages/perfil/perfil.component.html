@@ -1,53 +1,80 @@
-<section class="min-h-screen bg-[#E8DDC7] flex items-center justify-center px-4 py-16">
-  <div class="w-full max-w-2xl bg-[#F7F3EB] rounded-3xl shadow-lg p-10 border border-[#B1C7B3]">
-    
-    <h2 class="text-3xl font-bold text-center text-[#6B8C79] mb-6">
-      Perfil de Usuario 🌿
-    </h2>
+<section class="min-h-screen bg-[#F7F3EB] py-10 px-4 text-[#333]">
+  <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-[#D4D4D4]">
 
-    <!-- Formulario de edición de perfil -->
-    <form class="space-y-6">
+    <!-- PERFIL -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
 
-      <!-- Nombre -->
-      <div>
-        <label class="block mb-1 text-[#6B8C79] font-medium">Nombre completo</label>
-        <input
-          type="text"
-          placeholder="Tu nombre"
-          class="w-full p-3 border-2 border-[#B1C7B3] rounded-xl focus:ring-2 focus:ring-[#6B8C79] focus:border-[#6B8C79] transition"
-        />
+      <!-- Foto -->
+      <div class="shrink-0">
+        <img src="https://ui-avatars.com/api/?name=Monica+Fernanda&background=6B8C79&color=fff&size=128"
+             alt="Foto de perfil"
+             class="w-32 h-32 rounded-full border-4 border-[#6B8C79] shadow-md" />
       </div>
 
-      <!-- Correo -->
-      <div>
-        <label class="block mb-1 text-[#6B8C79] font-medium">Correo electrónico</label>
-        <input
-          type="email"
-          placeholder="correo@ejemplo.com"
-          class="w-full p-3 border-2 border-[#B1C7B3] rounded-xl focus:ring-2 focus:ring-[#6B8C79] focus:border-[#6B8C79] transition"
-        />
-      </div>
+      <!-- Datos -->
+      <div class="flex-1 w-full">
+        <h2 class="text-3xl font-bold text-[#6B8C79] mb-2">Monica Fernanda</h2>
 
-      <!-- Teléfono -->
-      <div>
-        <label class="block mb-1 text-[#6B8C79] font-medium">Teléfono</label>
-        <input
-          type="text"
-          placeholder="Número de teléfono"
-          class="w-full p-3 border-2 border-[#B1C7B3] rounded-xl focus:ring-2 focus:ring-[#6B8C79] focus:border-[#6B8C79] transition"
-        />
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p><span class="font-semibold text-[#6B8C79]">Correo:</span> monica</p>
+            <p><span class="font-semibold text-[#6B8C79]">Teléfono:</span> 312 345 6789</p>
+            <p><span class="font-semibold text-[#6B8C79]">Rol:</span> Agricultora</p>
+          </div>
+          <div>
+            <p><span class="font-semibold text-[#6B8C79]">Ciudad:</span> El Carmen de Viboral</p>
+            <p><span class="font-semibold text-[#6B8C79]">Dirección:</span> Vereda El Porvenir</p>
+          </div>
+        </div>
 
-      <!-- Botón de guardar -->
-      <div>
-        <button
-          type="submit"
-          class="w-full bg-[#6B8C79] hover:bg-[#587266] text-white py-3 rounded-xl font-semibold text-lg transition"
-        >
-          Guardar cambios
-        </button>
+        <!-- Botones -->
+        <div class="mt-8 flex flex-wrap gap-4">
+          <button class="bg-[#6B8C79] text-white px-6 py-2 rounded-lg hover:bg-[#57705f] transition">Editar perfil</button>
+          <button class="bg-[#B45309] text-white px-6 py-2 rounded-lg hover:bg-[#92400e] transition">Cambiar contraseña</button>
+          <button class="ml-auto bg-[#9F1239] text-white px-6 py-2 rounded-lg hover:bg-[#881337] transition">Cerrar sesión</button>
+        </div>
       </div>
-    </form>
+    </div>
+
+    <!-- HISTORIAL DE PEDIDOS -->
+    <div class="mt-12">
+      <h3 class="text-2xl font-semibold text-[#6B8C79] mb-4">Historial de pedidos</h3>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-[#D4D4D4] text-sm text-left">
+          <thead class="bg-[#E8DDC7] text-[#333]">
+            <tr>
+              <th class="px-4 py-2">ID</th>
+              <th class="px-4 py-2">Fecha</th>
+              <th class="px-4 py-2">Estado</th>
+              <th class="px-4 py-2">Total</th>
+              <th class="px-4 py-2">Acción</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="px-4 py-3">#1001</td>
+              <td class="px-4 py-3">22/06/2025</td>
+              <td class="px-4 py-3 text-green-600 font-medium">Entregado</td>
+              <td class="px-4 py-3 font-semibold">$145.000</td>
+              <td class="px-4 py-3">
+                <button class="text-[#6B8C79] hover:underline">Ver detalles</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3">#1000</td>
+              <td class="px-4 py-3">20/06/2025</td>
+              <td class="px-4 py-3 text-yellow-600 font-medium">En camino</td>
+              <td class="px-4 py-3 font-semibold">$93.000</td>
+              <td class="px-4 py-3">
+                <button class="text-[#6B8C79] hover:underline">Ver detalles</button>
+              </td>
+            </tr>
+            <!-- Puedes agregar más filas dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   </div>
 </section>

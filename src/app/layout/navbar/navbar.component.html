@@ -10,9 +10,9 @@
       <a routerLink="/inicio" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio Sesión</a>
       <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea tu cuenta</a>
       <a routerLink="/productos" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Productos</a>
-      <a routerLink="/carrito" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Carrito</a>
+      <a routerLink="/carrito" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Carrito</a>
       <a routerLink="/contacto" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Contáctanos</a>
-      <a routerLink="/perfil" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Perfil</a>
+      <a routerLink="/perfil" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Perfil</a>
 
       <!-- Dropdown Categorías -->
       <div class="group relative">

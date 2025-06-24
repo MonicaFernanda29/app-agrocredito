@@ -8,15 +8,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'productos', component: ProductosComponent },
-  { path: 'carrito', component: CarritoComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'carrito', component: CarritoComponent, canActivate: [AuthGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]  },
   { path: 'contacto', component: ContactoComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: "perfil", component: PerfilComponent},
+  { path: "perfil", component: PerfilComponent, canActivate: [AuthGuard] },
   { path: "inicio", component: InicioComponent},
 
 
