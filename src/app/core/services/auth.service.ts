@@ -4,46 +4,57 @@ import { Observable, tap } from "rxjs";
 import { RegisterRequest} from '../models/request/register-request.model';
 import { AuthResponse } from "../models/response/auth-response.model";
 import { HttpClient } from '@angular/common/http';
-
+import { UserPayload } from '../models/response/UserPayloand';
+import {jwtDecode} from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   readonly apiUrl = "http://localhost:8080";
 
-  constructor( readonly http:HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
-  registerUser(registerRequest:RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/protected/auth/register`,registerRequest)
-    .pipe(tap(response => {this.saveToken(response.accessToken,response.refreshToken)}));
+  registerUser(registerRequest: RegisterRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/protected/auth/register`, registerRequest)
+      .pipe(tap(response => {
+        this.saveToken(response.accessToken, response.refreshToken);
+      }));
   }
 
-  loginUser(loginRequest:LoginRequest): Observable<AuthResponse> {
+  loginUser(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/protected/auth/login`, loginRequest)
-    .pipe(tap(response => {this.saveToken(response.accessToken,response.refreshToken)}));
+      .pipe(tap(response => {
+        this.saveToken(response.accessToken, response.refreshToken);
+      }));
   }
 
-  saveToken(accessToken:string, refreshToken:string) {
+  saveToken(accessToken: string, refreshToken: string): void {
     localStorage.setItem("jwt_token", accessToken);
     localStorage.setItem("jwt_retoken", refreshToken);
   }
 
-  getToken():string | null {
+  getToken(): string | null {
     return localStorage.getItem("jwt_token");
   }
 
-  isAuthenticated(): boolean{
-    return !!this.getToken()
+  getUserData(): UserPayload | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      return jwtDecode<UserPayload>(token);
+    } catch (e) {
+      console.error('Error decodificando JWT:', e);
+      return null;
+    }
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 
   logout(): void {
     localStorage.removeItem("jwt_token");
     localStorage.removeItem("jwt_retoken");
   }
-
-
-
-
-
 }

@@ -21,10 +21,13 @@ export class RegistroComponent {
 
     const nombre = (form.querySelector('#nombre') as HTMLInputElement).value.trim();
     const email = (form.querySelector('#email') as HTMLInputElement).value.trim();
+    const telefono = (form.querySelector('#telefono') as HTMLInputElement).value.trim();
+    const ciudad = (form.querySelector('#ciudad') as HTMLInputElement).value.trim();
+    const direccion = (form.querySelector('#direccion') as HTMLInputElement).value.trim();
     const password = (form.querySelector('#password') as HTMLInputElement).value;
     const confirmPassword = (form.querySelector('#confirmPassword') as HTMLInputElement).value;
 
-    if (!nombre || !email || !password || !confirmPassword) {
+    if (!nombre || !email || !telefono || !ciudad || !direccion || !password || !confirmPassword) {
       alert('❗ Todos los campos son obligatorios.');
       return;
     }
@@ -37,7 +40,11 @@ export class RegistroComponent {
     const request: RegisterRequest = {
       name: nombre,
       email: email,
-      password: password
+      telefono: telefono,
+      ciudad: ciudad,
+      direccion: direccion,
+      password: password,
+      rol: 'Cliente' // valor por defecto
     };
 
     this.authService.registerUser(request).subscribe({
