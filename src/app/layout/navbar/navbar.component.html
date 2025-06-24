@@ -1,29 +1,33 @@
-<nav class="px-4 py-3 shadow-md text-white" style="background-color: #6B8C79">
+<nav class="px-4 py-3 shadow-md text-white" style="background-color: #6b8c79">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo o Título -->
-    <div class="text-2xl font-bold text-[#E8DDC7]"> 
+    <div class="text-2xl font-bold text-[#E8DDC7]">
       <a href="/"> AgroCrédito 🌿</a>
     </div>
 
     <!-- Menú -->
     <div class="hidden md:flex space-x-6 items-center relative">
-      <a routerLink="/inicio" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio Sesión</a>
-      <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea tu cuenta</a>
-      <a routerLink="/productos" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Productos</a>
-      <a routerLink="/carrito" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Carrito</a>
-      <a routerLink="/contacto" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Contáctanos</a>
-      <a routerLink="/perfil" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Perfil</a>
+      <!-- Mostrar esto SOLO si NO está autenticado -->
+      <ng-container *ngIf="!authService.isAuthenticated(); else loggedIn">
+        <a routerLink="/inicio" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio
+          Sesión</a>
+        <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea
+          tu cuenta</a>
+      </ng-container>
 
-      <!-- Dropdown Categorías -->
-      <div class="group relative">
-        <button class="text-[#E8DDC7] hover:underline">Categorías ▾</button>
-        <div class="absolute top-8 left-0 bg-white text-gray-800 rounded-lg shadow-lg p-2 w-48 hidden group-hover:block z-10">
-          <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-sm">🌿 Semillas</a>
-          <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-sm">💧 Fertilizantes</a>
-          <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-sm">🛠️ Herramientas</a>
-          <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-sm">🐛 Insecticidas</a>
-        </div>
-      </div>
+      <!-- Mostrar esto si SÍ está autenticado -->
+      <ng-template #loggedIn>
+        <a routerLink="/perfil" routerLinkActive="font-semibold underline"
+          class="text-[#E8DDC7] hover:underline">Perfil</a>
+        <a (click)="cerrarSesion()" class="cursor-pointer text-[#E8DDC7] hover:underline">Cerrar sesión</a>
+      </ng-template>
+
+      <a routerLink="/productos" routerLinkActive="font-semibold underline"
+        class="text-[#E8DDC7] hover:underline">Productos</a>
+      <a routerLink="/carrito" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline"
+        class="text-[#E8DDC7] hover:underline">Carrito</a>
+      <a routerLink="/contacto" routerLinkActive="font-semibold underline"
+        class="text-[#E8DDC7] hover:underline">Contáctanos</a>
     </div>
 
     <!-- Botón mobile -->
