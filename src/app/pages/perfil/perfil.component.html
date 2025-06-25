@@ -30,8 +30,8 @@
               {{ usuario?.email }}
             </p>
             <p>
-              <span class="font-semibold text-[#6B8C79]">Teléfono:</span> 
-               {{ usuario?.telefono }}
+              <span class="font-semibold text-[#6B8C79]">Teléfono:</span>
+              {{ usuario?.telefono }}
             </p>
             <p>
               <span class="font-semibold text-[#6B8C79]">Rol:</span>
@@ -53,15 +53,17 @@
         <!-- Botones -->
         <div class="mt-8 flex flex-wrap gap-4">
           <button
+            (click)="mostrarEditar = !mostrarEditar"
             class="bg-[#6B8C79] text-white px-6 py-2 rounded-lg hover:bg-[#57705f] transition"
           >
             Editar perfil
           </button>
           <button
+            (click)="mostrarPassword = !mostrarPassword"
             class="bg-[#B45309] text-white px-6 py-2 rounded-lg hover:bg-[#92400e] transition"
           >
             Cambiar contraseña
-          </button>         
+          </button>
         </div>
       </div>
     </div>
@@ -112,6 +114,76 @@
           </tbody>
         </table>
       </div>
+    </div>
+    <!-- Editar perfil -->
+    <div *ngIf="mostrarEditar" class="mt-10 bg-white p-6 rounded-xl border">
+      <h3 class="text-xl font-semibold mb-4 text-[#6B8C79]">Editar perfil</h3>
+      <form (ngSubmit)="editarPerfil()">
+        <input
+          type="text"
+          [(ngModel)]="usuarioEdit.name"
+          name="nombre"
+          placeholder="Nombre"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <input
+          type="email"
+          [(ngModel)]="usuarioEdit.email"
+          name="email"
+          placeholder="Correo"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <input
+          type="text"
+          [(ngModel)]="usuarioEdit.telefono"
+          name="telefono"
+          placeholder="Teléfono"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <input
+          type="text"
+          [(ngModel)]="usuarioEdit.ciudad"
+          name="ciudad"
+          placeholder="Ciudad"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <input
+          type="text"
+          [(ngModel)]="usuarioEdit.direccion"
+          name="direccion"
+          placeholder="Dirección"
+          class="w-full mb-4 p-2 border rounded"
+        />
+        <button class="bg-[#6B8C79] text-white px-4 py-2 rounded">
+          Guardar cambios
+        </button>
+      </form>
+    </div>
+
+    <!-- Cambiar contraseña -->
+    <div *ngIf="mostrarPassword" class="mt-10 bg-white p-6 rounded-xl border">
+      <h3 class="text-xl font-semibold mb-4 text-[#6B8C79]">
+        Cambiar contraseña
+      </h3>
+      <form (ngSubmit)="cambiarPassword()">
+        <input
+          type="password"
+          [(ngModel)]="password.old"
+          name="old"
+          placeholder="Contraseña actual"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <input
+          type="password"
+          [(ngModel)]="password.new"
+          name="new"
+          placeholder="Nueva contraseña"
+          class="w-full mb-2 p-2 border rounded"
+        />
+        <button class="bg-[#B45309] text-white px-4 py-2 rounded">
+          Actualizar contraseña
+        </button>
+      </form>
     </div>
   </div>
 </section>

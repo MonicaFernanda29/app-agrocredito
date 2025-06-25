@@ -1,144 +1,15 @@
-<!-- Productos Destacados -->
-<section class="py-16 px-4" style="background-color: #E8DDC7;">
-  <h2 class="text-3xl font-bold text-center mb-10 text-[#6B8C79]">Productos</h2>
-
-  <!-- Barra de búsqueda -->
-  <div class="max-w-md mx-auto mb-10">
-    <div class="relative">
-      <input 
-        type="text" 
-        placeholder="Buscar productos..." 
-        class="w-full py-3 pl-12 pr-4 border border-[#6B8C79] text-[#6B8C79] rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[#6B8C79]"
-      >
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <svg class="h-6 w-6 text-[#6B8C79]" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 21l-4.35-4.35M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tarjetas de productos -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-    <!-- Producto 1 -->
-    <div class="bg-[#E8DDC7] border border-[#6B8C79] rounded-lg overflow-hidden hover:shadow transition">
-  <img src="assets/productos/semillas.jpg" alt="Abono Orgánico" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h3 class="font-semibold text-[#6B8C79] mb-2">Abono Orgánico</h3>
-    <p class="text-[#444]">Mejora la fertilidad del suelo y estimula el crecimiento natural.</p>
-    <p class="text-[#6B8C79] font-bold mt-2">$15.000</p>
-  </div>
-  <div class="p-4 flex justify-between">
-    <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
+  <section class="py-16 px-4">
+  <h2 class="text-3xl font-semibold text-center mb-10 text-[#6B8C79]">Nuestros Productos</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+  <div *ngFor="let producto of productos" class="bg-white rounded-xl shadow-md p-4">
+    <img [src]="producto.imagen" alt="{{producto.nombre}}" class="w-full h-40 object-cover rounded-md mb-4" />
+    <h3 class="text-lg font-semibold text-[#6B8C79]">{{ producto.nombre }}</h3>
+    <p class="text-sm text-gray-600 mb-2">{{ producto.descripcion }}</p>
+    <p class="text-green-700 font-bold mb-4">${{ producto.precio }}</p>
+    <!--<button (click)="agregar(producto)" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#57705f]">
+      Agregar al carrito
+    </button>-->
   </div>
 </div>
 
-
-    <!-- Producto 2 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/fertilizante.jpg" alt="Pala de Mano" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Pala de Mano</h3>
-        <p class="text-gray-700">Ideal para trasplantes y trabajo en macetas.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$12.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 3 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Rastrillo de Jardín" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Rastrillo de Jardín</h3>
-        <p class="text-gray-700">Para limpiar hojas y nivelar el terreno.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$10.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 4 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Semillas de Tomate" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Semillas de Tomate</h3>
-        <p class="text-gray-700">Variedad resistente y de alto rendimiento.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$5.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 5 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Semillas de Lechuga" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Semillas de Lechuga</h3>
-        <p class="text-gray-700">Ideal para climas templados, crecimiento rápido.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$4.500</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 6 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Insecticida Orgánico" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Insecticida Orgánico</h3>
-        <p class="text-gray-700">Controla plagas sin dañar el ambiente.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$20.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 7 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Fungicida Natural" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Fungicida Natural</h3>
-        <p class="text-gray-700">Previene y combate hongos en cultivos.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$22.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 8 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Martillo" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Martillo</h3>
-        <p class="text-gray-700">Útil para trabajos en madera.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$50.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-    <!-- Producto 9 -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
-      <img src="assets/productos/herramienta.jpg" alt="Barra" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-[#6B8C79] mb-2">Barra</h3>
-        <p class="text-gray-700">Útil para trabajos en tierra.</p>
-        <p class="text-[#6B8C79] font-bold mt-2">$50.000</p>
-      </div>
-      <div class="p-4 flex justify-between">
-        <button [routerLink]="['/carrito']" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#587266] transition">Comprar</button>
-      </div>
-    </div>
-
-  </div>
 </section>
