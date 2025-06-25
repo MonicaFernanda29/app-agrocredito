@@ -1,68 +1,52 @@
-import { Component } from '@angular/core';
-import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { CarritoService } from '../../core/services/carrito.service';
+import { HttpClient } from '@angular/common/http';
+import { OrderItem } from '../../core/models/request/order-item.model';
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [NgFor, NgIf, DatePipe],
+  imports: [NgFor, NgIf],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
-export class CarritoComponent {
-  carrito = [
-    {
-      nombre: 'Producto Ejemplo',
-      precio: 20,
-      cantidad: 1,
-      imagen: 'https://via.placeholder.com/100'
-    },
-    {
-      nombre: 'Otro Producto',
-      precio: 45,
-      cantidad: 2,
-      imagen: 'https://via.placeholder.com/100'
+export class CarritoComponent implements OnInit {
+  carrito: OrderItem[] = [];
+  total: number = 0;
+
+  constructor(private carritoService: CarritoService, private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.cargarCarrito();
+  }
+
+  cargarCarrito(): void {
+    this.carrito = this.carritoService.obtenerCarrito();
+    this.total = this.carrito.reduce((sum, item) => sum + item.precio * item.quantity, 0);
+  }
+
+  eliminarItem(productid: string): void {
+    this.carritoService.eliminarProducto(productid);
+    this.cargarCarrito();
+  }
+
+  finalizarCompra(): void {
+    if (this.carrito.length === 0) {
+      alert('🛒 El carrito está vacío');
+      return;
     }
-  ];
 
-  facturaGenerada = false;
-  facturaResumen: any = null;
-
-  aumentar(i: number) {
-    this.carrito[i].cantidad++;
-  }
-
-  disminuir(i: number) {
-    if (this.carrito[i].cantidad > 1) {
-      this.carrito[i].cantidad--;
-    }
-  }
-
-  eliminar(i: number) {
-    this.carrito.splice(i, 1);
-  }
-
-  obtenerSubtotal(): number {
-    return this.carrito.reduce((total, p) => total + p.precio * p.cantidad, 0);
-  }
-
-  comprar() {
-    this.facturaResumen = {
-      cliente: 'Juanito Rodríguez',
-      productos: this.carrito.map(p => ({
-        nombre: p.nombre,
-        cantidad: p.cantidad,
-        precio: p.precio,
-        total: p.precio * p.cantidad
-      })),
-      total: this.obtenerSubtotal(),
-      fecha: new Date()
-    };
-
-    this.facturaGenerada = true;
-    this.carrito = [];
-  }
-
-  volverAlCarrito() {
-    this.facturaGenerada = false;
+    this.http.post('http://localhost:3000/api/AddOrders', { items: this.carrito }).subscribe({
+      next: (res) => {
+        alert('✅ Orden creada con éxito');
+        this.carritoService.vaciarCarrito();
+        this.cargarCarrito();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('❌ Error al crear la orden');
+      }
+    });
   }
 }

@@ -1,15 +1,16 @@
-  <section class="py-16 px-4">
+<section class="py-16 px-4">
   <h2 class="text-3xl font-semibold text-center mb-10 text-[#6B8C79]">Nuestros Productos</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-  <div *ngFor="let producto of productos" class="bg-white rounded-xl shadow-md p-4">
-    <img [src]="producto.imagen" alt="{{producto.nombre}}" class="w-full h-40 object-cover rounded-md mb-4" />
-    <h3 class="text-lg font-semibold text-[#6B8C79]">{{ producto.nombre }}</h3>
-    <p class="text-sm text-gray-600 mb-2">{{ producto.descripcion }}</p>
-    <p class="text-green-700 font-bold mb-4">${{ producto.precio }}</p>
-    <!--<button (click)="agregar(producto)" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#57705f]">
-      Agregar al carrito
-    </button>-->
+    <div *ngFor="let producto of productos" class="bg-white rounded-xl shadow-md p-4">
+      <img [src]="producto.imagen" alt="{{producto.nombre}}" class="w-full h-40 object-cover rounded-md mb-4" />
+      <h3 class="text-lg font-semibold text-[#6B8C79]">{{ producto.nombre }}</h3>
+      <p class="text-sm text-gray-600 mb-2">{{ producto.descripcion }}</p>
+      <p class="text-green-700 font-bold mb-4">${{ producto.precio }}</p>
+      <button (click)="agregarAlCarrito(producto)" class="bg-[#6B8C79] text-white px-4 py-2 rounded hover:bg-[#57705f]">
+        Agregar al carrito
+      </button>
+    </div>
   </div>
-</div>
+
 
 </section>
