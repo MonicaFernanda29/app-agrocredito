@@ -1,41 +1,39 @@
-<nav class="px-4 py-3 shadow-md text-white" style="background-color: #6b8c79">
-  <div class="container mx-auto flex justify-between items-center">
-    <!-- Logo o Título -->
-    <div class="flex items-center">
-      <a href="/">
-        <img src="/logo-agrocredito.png" alt="AgroCrédito" class="max-h-52 w-auto">
-        
-      </a>
-    </div>
+<nav class="bg-[#6b8c79] shadow-md px-4">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between py-2 text-white">
+    
+    <!-- Logo -->
+    <a routerLink="/" class="flex items-center space-x-2">
+      <img src="/logo-agrocredito.png" alt="AgroCrédito" class="h-10 w-auto" />
+      <span class="text-xl font-bold">AgroCrédito</span>
+    </a>
 
-    <!-- Menú -->
-    <div class="hidden md:flex space-x-6 items-center relative">
-      <!-- Mostrar esto SOLO si NO está autenticado -->
-      <ng-container *ngIf="!authService.isAuthenticated(); else loggedIn">
-        <a routerLink="/inicio" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Inicio
-          Sesión</a>
-        <a routerLink="/registro" routerLinkActive="font-semibold underline" class="text-[#E8DDC7] hover:underline">Crea
-          tu cuenta</a>
+    <!-- Íconos y enlaces -->
+    <div class="flex items-center space-x-5">
+      <a routerLink="/productos" class="hover:underline hidden md:inline">Productos</a>
+      <a routerLink="/contacto" class="hover:underline hidden md:inline">Contacto</a>
+
+      <ng-container *ngIf="authService.isAuthenticated(); else noLogin">
+        <a routerLink="/perfil" title="Perfil">
+          <span class="material-icons text-white">account_circle</span>
+        </a>
+        <a routerLink="/carrito" title="Carrito">
+          <span class="material-icons text-white">shopping_cart</span>
+        </a>
+        <a (click)="cerrarSesion()" class="hover:underline cursor-pointer hidden md:inline">Cerrar sesión</a>
       </ng-container>
 
-      <!-- Mostrar esto si SÍ está autenticado -->
-      <ng-template #loggedIn>
-        <a routerLink="/perfil" routerLinkActive="font-semibold underline"
-          class="text-[#E8DDC7] hover:underline">Perfil</a>
-        <a (click)="cerrarSesion()" class="cursor-pointer text-[#E8DDC7] hover:underline">Cerrar sesión</a>
+      <ng-template #noLogin>
+        <a routerLink="/inicio" class="hover:underline hidden md:inline">Iniciar sesión</a>
+        <a routerLink="/registro"
+           class="text-white hover:underline transition hidden md:inline">
+          Crear cuenta
+        </a>
       </ng-template>
 
-      <a routerLink="/productos" routerLinkActive="font-semibold underline"
-        class="text-[#E8DDC7] hover:underline">Productos</a>
-      <a routerLink="/carrito" *ngIf="authService.isAuthenticated()" routerLinkActive="font-semibold underline"
-        class="text-[#E8DDC7] hover:underline">Carrito</a>
-      <a routerLink="/contacto" routerLinkActive="font-semibold underline"
-        class="text-[#E8DDC7] hover:underline">Contáctanos</a>
-    </div>
-
-    <!-- Botón mobile -->
-    <div class="md:hidden text-[#E8DDC7]">
-      <span class="material-icons">menu</span>
+      <!-- Hamburguesa móvil -->
+      <button class="md:hidden">
+        <span class="material-icons text-white">menu</span>
+      </button>
     </div>
   </div>
 </nav>

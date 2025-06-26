@@ -1,4 +1,4 @@
-<section class="min-h-screen bg-[#F7F3EB] py-10 px-4 text-[#333]">
+<section class="min-h-screen bg-[#ffffff] py-10 px-4 text-[#333]">
   <div
     class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-[#D4D4D4]"
   >
@@ -88,28 +88,21 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
-            <tr>
-              <td class="px-4 py-3">#1001</td>
-              <td class="px-4 py-3">22/06/2025</td>
-              <td class="px-4 py-3 text-green-600 font-medium">Entregado</td>
-              <td class="px-4 py-3 font-semibold">$145.000</td>
+            <tr *ngFor="let orden of historialOrdenes">
+              <td class="px-4 py-3">#{{ orden._id }}</td>
+              <td class="px-4 py-3">{{ orden.Date | date : "shortDate" }}</td>
+              <td class="px-4 py-3 text-green-600 font-medium">Procesado</td>
+              <td class="px-4 py-3 font-semibold">${{ orden.totalPrecio }}</td>
               <td class="px-4 py-3">
-                <button class="text-[#6B8C79] hover:underline">
+                <button
+                  (click)="abrirModalDetalle(orden)"
+                  class="text-[#6B8C79] hover:underline"
+                >
                   Ver detalles
                 </button>
               </td>
             </tr>
-            <tr>
-              <td class="px-4 py-3">#1000</td>
-              <td class="px-4 py-3">20/06/2025</td>
-              <td class="px-4 py-3 text-yellow-600 font-medium">En camino</td>
-              <td class="px-4 py-3 font-semibold">$93.000</td>
-              <td class="px-4 py-3">
-                <button class="text-[#6B8C79] hover:underline">
-                  Ver detalles
-                </button>
-              </td>
-            </tr>
+
             <!-- Puedes agregar más filas dinámicamente -->
           </tbody>
         </table>
@@ -184,6 +177,46 @@
           Actualizar contraseña
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal de Detalles de Orden -->
+  <div
+    *ngIf="mostrarModalDetalle"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div class="bg-white p-6 rounded-xl w-full max-w-lg relative">
+      <h3 class="text-xl font-semibold text-[#6B8C79] mb-4">
+        Detalles de la orden
+      </h3>
+
+      <table class="w-full text-sm">
+        <thead class="bg-[#F0EDE5]">
+          <tr>
+            <th class="px-2 py-1 text-left">Producto</th>
+            <th class="px-2 py-1 text-left">Precio</th>
+            <th class="px-2 py-1 text-left">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of ordenSeleccionada?.items">
+            <td class="px-2 py-1">{{ item.nombre }}</td>
+            <td class="px-2 py-1">${{ item.precio }}</td>
+            <td class="px-2 py-1">{{ item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="text-right mt-4 text-lg font-bold text-[#6B8C79]">
+        Total: ${{ ordenSeleccionada?.totalPrecio }}
+      </div>
+
+      <button
+        (click)="mostrarModalDetalle = false"
+        class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl"
+      >
+        &times;
+      </button>
     </div>
   </div>
 </section>

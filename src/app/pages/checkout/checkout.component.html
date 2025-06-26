@@ -1,1 +1,40 @@
-<p>checkout works!</p>
+<section class="min-h-screen bg-[#ffffff] p-8 text-[#333]">
+  <div class="max-w-4xl mx-auto bg-[#F7F3EB]  p-8 rounded-xl shadow border border-[#D4D4D4]">
+    <h2 class="text-3xl font-bold text-[#6B8C79] mb-4">🎉 ¡Gracias por tu compra!</h2>
+    
+    <p class="mb-2 text-lg">Tu pedido ha sido procesado con éxito.</p>
+    <p *ngIf="orderId" class="text-sm mb-4">Número de orden: <strong>{{ orderId }}</strong></p>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2 text-[#6B8C79]">Resumen de productos</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full border text-sm text-left mt-2">
+        <thead class="bg-[#E8DDC7] text-[#333]">
+          <tr>
+            <th class="px-4 py-2">Producto</th>
+            <th class="px-4 py-2">Cantidad</th>
+            <th class="px-4 py-2">Precio</th>
+            <th class="px-4 py-2">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productos" class="border-t">
+            <td class="px-4 py-2">{{ item.nombre }}</td>
+            <td class="px-4 py-2">{{ item.quantity }}</td>
+            <td class="px-4 py-2">${{ item.precio }}</td>
+            <td class="px-4 py-2">${{ item.precio * item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-right text-xl mt-6 font-bold text-[#6B8C79]">
+      Total pagado: ${{ total }}
+    </div>
+
+    <div class="mt-6 text-center">
+      <a routerLink="/productos" class="bg-[#6B8C79] text-white px-6 py-3 rounded-lg hover:bg-[#57705f] transition">
+        Seguir comprando
+      </a>
+    </div>
+  </div>
+</section>

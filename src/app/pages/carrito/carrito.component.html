@@ -1,41 +1,58 @@
+<section class="p-6 bg-white min-h-screen">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold text-[#6B8C79] mb-6 flex items-center gap-2">
+      <span class="material-icons text-[#6B8C79]">shopping_cart</span>
+      Tu pedido
+    </h2>
 
-<section class="p-8 bg-[#F7F3EB] min-h-screen">
-  <h2 class="text-3xl font-bold text-[#6B8C79] mb-6">🛒 Carrito de Compras</h2>
+    <div *ngFor="let item of carrito" class="flex items-center justify-between gap-4 border-b pb-4 mb-4">
+      <!-- Nombre, precio y control cantidad -->
+      <div>
+        <h3 class="text-lg font-semibold">{{ item.nombre }}</h3>
+        <p class="text-sm text-gray-600 mb-2">Precio: ${{ item.precio }}</p>
+        <div class="flex items-center gap-2">
+          <button (click)="disminuirCantidad(item)" class="bg-gray-200 text-black w-8 h-8 rounded-full">-</button>
+          <span class="w-6 text-center">{{ item.quantity }}</span>
+          <button (click)="aumentarCantidad(item)" class="bg-gray-200 text-black w-8 h-8 rounded-full">+</button>
+        </div>
+      </div>
 
-  <div *ngIf="carrito.length > 0; else vacio">
-    <table class="w-full text-left border border-[#ccc] mb-6">
-      <thead class="bg-[#E8DDC7]">
-        <tr>
-          <th class="p-2">Producto</th>
-          <th class="p-2">Precio</th>
-          <th class="p-2">Cantidad</th>
-          <th class="p-2">Subtotal</th>
-          <th class="p-2">Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of carrito" class="border-t">
-          <td class="p-2">{{ item.nombre }}</td>
-          <td class="p-2">${{ item.precio }}</td>
-          <td class="p-2">{{ item.quantity }}</td>
-          <td class="p-2 font-semibold text-green-700">${{ item.precio * item.quantity }}</td>
-          <td class="p-2">
-            <button (click)="eliminarItem(item.productid)" class="text-red-600 hover:underline">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- Subtotal + Eliminar -->
+      <div class="text-right">
+        <p class="text-green-700 font-bold text-lg">${{ item.precio * item.quantity }}</p>
+        <button (click)="eliminarItem(item.productid)" class="text-red-600 hover:text-red-800 mt-1" title="Eliminar">
+          <span class="material-icons">delete</span>
+        </button>
+      </div>
+    </div>
 
-    <div class="text-right text-xl font-bold text-[#6B8C79] mb-6">
+    <!-- Total -->
+    <div class="text-right text-xl font-bold text-[#6B8C79] mt-6">
       Total: ${{ total }}
     </div>
 
-    <button (click)="finalizarCompra()" class="bg-[#6B8C79] text-white px-6 py-3 rounded-lg hover:bg-[#587266] transition">
+    <!-- Botón finalizar -->
+    <button (click)="abrirModalPago()" class="mt-4 bg-[#6B8C79] text-white px-6 py-3 rounded-lg hover:bg-[#587266] transition">
       Finalizar compra
     </button>
   </div>
 
-  <ng-template #vacio>
-    <p class="text-lg text-gray-600">Tu carrito está vacío.</p>
-  </ng-template>
+  <!-- Modal de pago -->
+  <div *ngIf="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg w-96">
+      <h3 class="text-xl font-bold mb-4">Selecciona el método de pago</h3>
+
+      <select [(ngModel)]="metodoPago" class="w-full p-2 border mb-4">
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="tarjeta">Tarjeta</option>
+        <option value="pse">PSE</option>
+        <option value="credito">Crédito</option>
+      </select>
+
+      <div class="flex justify-end gap-4">
+        <button (click)="mostrarModal = false" class="text-gray-600 hover:underline">Cancelar</button>
+        <button (click)="procesarPago()" class="bg-green-600 text-white px-4 py-2 rounded">Pagar</button>
+      </div>
+    </div>
+  </div>
 </section>

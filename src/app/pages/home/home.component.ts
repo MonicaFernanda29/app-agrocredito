@@ -12,8 +12,8 @@ export class HomeComponent {
  
   imagenes: string[] = [
     'banners/banner1.png',
-    'banners/banner2.png',
-    'banners/banner3.jpg',
+    'banners/banner2.jpeg',
+    'banners/banner3.jpeg',
   ];
 
   currentIndex = 0;
